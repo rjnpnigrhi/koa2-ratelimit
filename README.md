@@ -1,7 +1,4 @@
-#  Koajs 2 Rate Limit (Bruteforce)
-
-[![Build Status](https://secure.travis-ci.org/ysocorp/koa2-ratelimit.png?branch=master "Test")](http://travis-ci.org/ysocorp/koa2-ratelimit)
-[![NPM version](http://badge.fury.io/js/koa2-ratelimit.png)](https://npmjs.org/package/koa2-ratelimit "View this project on NPM")
+#  Koajs 2 Rate Limit ioredis
 
 Rate-limiting middleware for Koa2 with `async` `await`. Use to limit repeated requests to APIs and/or endpoints such as password reset.
 
@@ -21,7 +18,7 @@ Note: This module is based on [express-rate-limit](https://github.com/nfriedly/e
 ## Install
 
 ```sh
-$ npm install --save koa2-ratelimit
+$ npm install --save koa2-ratelimit-ioredis
 ```
 
 ## Usage
@@ -29,7 +26,7 @@ $ npm install --save koa2-ratelimit
 For an API-only server where the rate-limiter should be applied to all requests:
 
 ```js
-const RateLimit = require('koa2-ratelimit').RateLimit;
+const RateLimit = require('koa2-ratelimit-ioredis').RateLimit;
 
 const limiter = RateLimit.middleware({
   interval: { min: 15 }, // 15 minutes = 15*60*1000
@@ -43,7 +40,7 @@ app.use(limiter);
 Create multiple instances to apply different rules to different routes:
 
 ```js
-const RateLimit = require('koa2-ratelimit').RateLimit;
+const RateLimit = require('koa2-ratelimit-ioredis').RateLimit;
 const KoaRouter = require('koa-router');
 const router = new KoaRouter();
 
@@ -78,7 +75,7 @@ app.use(router.middleware())
 Set default options to all your middleware:
 
 ```js
-const RateLimit = require('koa2-ratelimit').RateLimit;
+const RateLimit = require('koa2-ratelimit-ioredis').RateLimit;
 
 RateLimit.defaultOptions({
     message: 'Get out.',
@@ -99,7 +96,7 @@ const createAccountLimiter = RateLimit.middleware({
 ### Use with RedisStore 
 
 ```js
-const RateLimit = require('koa2-ratelimit').RateLimit;
+const RateLimit = require('koa2-ratelimit-ioredis').RateLimit;
 const Stores = require('koa2-ratelimit').Stores;
 
 RateLimit.defaultOptions({
@@ -130,8 +127,8 @@ app.use(router.middleware())
 
 ```js
 const Sequelize = require('sequelize');
-const RateLimit = require('koa2-ratelimit').RateLimit;
-const Stores = require('koa2-ratelimit').Stores;
+const RateLimit = require('koa2-ratelimit-ioredis').RateLimit;
+const Stores = require('koa2-ratelimit-ioredis').Stores;
 
 const sequelize = new Sequelize(/*your config to connected to bdd*/);
 
@@ -161,8 +158,8 @@ app.use(router.middleware())
 
 ```js
 const mongoose = require('mongoose');
-const RateLimit = require('koa2-ratelimit').RateLimit;
-const Stores = require('koa2-ratelimit').Stores;
+const RateLimit = require('koa2-ratelimit-ioredis').RateLimit;
+const Stores = require('koa2-ratelimit-ioredis').Stores;
 
 await mongoose.connect(/*your config to connected to bdd*/);
 
@@ -301,5 +298,5 @@ Examples
 
 ## License
 
-MIT © [YSO Corp](http://ysocorp.com/)
+MIT © [Rajan Panigrahi]()
 

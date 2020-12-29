@@ -1,24 +1,24 @@
 {
-  "name": "koa2-ratelimit",
-  "author": "YSO CORP",
-  "version": "0.9.0",
+  "name": "koa2-ratelimit-ioredis",
+  "author": "Rajan Panigrahi",
+  "version": "0.0.1",
+  "license": "MIT",
   "description": "IP rate-limiting middleware for Koajs 2. Use to limit repeated requests to APIs and/or endpoints such as password reset.",
   "main": "src/index.js",
   "engines": {
-    "node": ">=7.10.1"
+    "node": ">=8"
   },
   "people": {
-    "name": "YSO CORP",
-    "email": "contact@ysocorp.com",
-    "url": "http://ysocorp.com"
+    "name": "Rajan Panigrahi",
+    "email": "rjnpnigrhi@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ysocorp/koa2-ratelimit"
+    "url": "https://github.com/rjnpnigrhi/koa2-ratelimit"
   },
   "dependencies": {
     "mongoose": "^5.5.13",
-    "promise-redis": "0.0.5",
+    "ioredis": "^4.19.4",
     "sequelize": "^5.8.7"
   },
   "devDependencies": {
@@ -69,6 +69,7 @@
     "brute-force",
     "brute-force-sequelize",
     "brute-force-mongodb",
-    "attack"
+    "attack",
+    "ioredis"
   ]
 }

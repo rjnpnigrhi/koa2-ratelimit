@@ -4,6 +4,7 @@
  * RedisStore for koa2-ratelimit
  * 
  * @author Ashok Vishwakarma <akvlko@gmail.com>
+ * @author Rajan Panigrahi <rjnpnigrhi@gmail.com>
  */
 
 /**
@@ -16,10 +17,10 @@ const Store = require('./Store.js');
 /**
  * redis
  * 
- * promise-redis module
- * https://github.com/maxbrieiev/promise-redis#readme
+ * ioredis module
+ * https://github.com/luin/ioredis
  */
-const redis = require('promise-redis')();
+const redis = require("ioredis");
 
 /**
  * RedisStore
@@ -35,7 +36,7 @@ class RedisStore extends Store {
    */
   constructor(config){
     super();
-    this.client = redis.createClient(config);
+    this.client = new redis(config);
   }
 
   /**
