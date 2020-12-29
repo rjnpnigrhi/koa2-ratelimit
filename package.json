@@ -19,6 +19,7 @@
   "dependencies": {
     "mongoose": "^5.5.13",
     "ioredis": "^4.19.4",
+    "lodash.get": "^4.4.2",
     "sequelize": "^5.8.7"
   },
   "devDependencies": {

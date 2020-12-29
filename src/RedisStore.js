@@ -21,6 +21,7 @@ const Store = require('./Store.js');
  * https://github.com/luin/ioredis
  */
 const redis = require("ioredis");
+const get = require("lodash.get");
 
 /**
  * RedisStore
@@ -47,16 +48,16 @@ class RedisStore extends Store {
    * @param {*} weight 
    */
   async _hit(key, options, weight) {
+    const result = await this.client.multi().ttl(key).get(key).exec();
+    let dateEnd = get(result, '[0][1]', null);
+    let counter = get(result, '[1][1]', null);
 
-    let [counter, dateEnd] = await this.client.multi().get(key).ttl(key).exec();
-    
-    if(counter === null) {
+    if (counter === null || Object.is(NaN, parseInt(counter))) {
       counter = weight;
       dateEnd = Date.now() + options.interval;
-
       const seconds = Math.ceil(options.interval / 1000);
       await this.client.setex(key, seconds, counter);
-    }else {
+    } else {
       counter = await this.client.incrby(key, weight);
     }
 
