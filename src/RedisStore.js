@@ -37,7 +37,16 @@ class RedisStore extends Store {
    */
   constructor(config){
     super();
-    this.client = new redis(config);
+    switch(config.type) {
+      case 'sentinel':
+        this.client = new redis(config);
+        break;
+      case 'cluster':
+        this.client = new Redis.Cluster(config);        
+        break;
+      default:
+        this.client = new redis(config);
+    }
   }
 
   /**

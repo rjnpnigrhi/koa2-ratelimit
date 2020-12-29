@@ -95,6 +95,10 @@ const createAccountLimiter = RateLimit.middleware({
 
 ### Use with RedisStore 
 
+[ioredis](https://www.npmjs.com/package/ioredis) options can be passed as config
+
+`config.type` can be `cluster` / `sentinel` / `standalone` 
+
 ```js
 const RateLimit = require('koa2-ratelimit-ioredis').RateLimit;
 const Stores = require('koa2-ratelimit').Stores;
@@ -105,7 +109,8 @@ RateLimit.defaultOptions({
         host: 'redis_host',
         port: 'redis_port',
         password: 'redis_password',
-        db: 1
+        db: 1,
+        type: 'standalone'
     })
 });
 
