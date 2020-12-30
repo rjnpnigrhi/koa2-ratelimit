@@ -42,7 +42,7 @@ class RedisStore extends Store {
         this.client = new redis(config);
         break;
       case 'cluster':
-        this.client = new Redis.Cluster(config.config);
+        this.client = new redis.Cluster(config.config);
         break;
       default:
         this.client = new redis(config);
